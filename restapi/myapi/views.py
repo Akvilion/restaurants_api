@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 import json
 import os
+from rest_framework import status
 
 
 def one(request):
@@ -18,3 +19,8 @@ class RestaurantsView(APIView):
 
     def get(self, request):
         return Response({"restaurants": self.restaurants})
+
+    def post(self, request):
+        serializer = request.data
+        self.restaurants.append(serializer)
+        return Response(serializer, status=status.HTTP_201_CREATED)
