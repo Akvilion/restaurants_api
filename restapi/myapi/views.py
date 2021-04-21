@@ -42,5 +42,7 @@ class RestaurantLuxury(APIView):
 class RestaurantWithItem(APIView):
 
     def get(self, request):
-        # implement logic
-        return Response({"withitem": request.GET['itemName']})
+        all = InitRestaurants.restaurants
+        itemName = request.GET['itemName']
+        restaurants_with_item = [i for i in all if 'cola' in i['menu']]
+        return Response({"restaurants_with_item": restaurants_with_item})
