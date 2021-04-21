@@ -16,7 +16,7 @@ class RestaurantsView(APIView):
 
     def get(self, request):
         return Response({"restaurants": InitRestaurants.restaurants})
- 
+
     def post(self, request):
         serializer = request.data
         InitRestaurants.restaurants.append(serializer)
@@ -37,3 +37,10 @@ class RestaurantLuxury(APIView):
         all = InitRestaurants.restaurants
         luxury = max(all, key=lambda k: k['average_bill'])
         return Response({"luxury": luxury})
+
+
+class RestaurantWithItem(APIView):
+
+    def get(self, request):
+        # implement logic
+        return Response({"withitem": request.GET['itemName']})
