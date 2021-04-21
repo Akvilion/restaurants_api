@@ -44,5 +44,5 @@ class RestaurantWithItem(APIView):
     def get(self, request):
         all = InitRestaurants.restaurants
         itemName = request.GET['itemName']
-        restaurants_with_item = [i for i in all if 'cola' in i['menu']]
+        restaurants_with_item = [i for i in all if itemName in i['menu']]
         return Response({"restaurants_with_item": restaurants_with_item})
